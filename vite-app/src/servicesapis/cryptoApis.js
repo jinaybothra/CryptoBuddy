@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const cryptoApiHeaders = {
-  'X-RapidAPI-Key': 'fd7558aa61mshcfffaab64eda177p1253c0jsnbb6b43beda6d',
+  'X-RapidAPI-Key': 'ed6ba45b10mshffd7d567fdb2362p1b9d58jsn6be4fe5a332d',
   'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
   
     
@@ -45,8 +45,3 @@ export const {
   useGetCryptoHistoryQuery,
   useGetCryptoSearchQuery,
 } = cryptoApi;
-
-
-// "X-RapidAPI-Key": 'coinrankingfd7558aa61mshcfffaab64eda177p1253c0jsnbb6b43beda6d',
-  // "X-RapidAPI-Host": "https://api.coinranking.com/v2",
-  // 'x-access-token': 'coinrankingfd7558aa61mshcfffaab64eda177p1253c0jsnbb6b43beda6d'

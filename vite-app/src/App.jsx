@@ -1,35 +1,86 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import { Layout, Typography, Space } from "antd";
 
-function App() {
-  const [count, setCount] = useState(0)
+const { Header, Content, Footer, Sider } = Layout;
 
+import Navbar from "./components/Navbar";
+import Homepage from "./components/Homepage";
+import Exchange from "./components/Exchange";
+import Cryptocurrencies from "./components/Cryptocurrencies";
+import CryptoDetails from "./components/CryptoDetails";
+import News from "./components/News";
+import Hero from "./components/Hero";
+import "./App.css";
+
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <div className="navbar">
+        <Navbar />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="main">
+        <Layout>
+          <div className="routes">
+            <Routes>
+            <Route path="/" element={<Hero />} />
+              <Route path="/home" element={<Homepage />} />
+              <Route path="/exchanges" element={<Exchange />} />
+              <Route path="/cryptocurrencies" element={<Cryptocurrencies />} />
+              <Route path="/crypto/:coinId" element={<CryptoDetails />} />
+              <Route path="/news" element={<News />} />
+            </Routes>
+          </div>
+        </Layout>
+        {/* <div className="footer">
+          <Typography.Title
+            level={5}
+            style={{ color: "white", textAlign: "center" }}
+          >
+            CoinTrack <br />
+            Ant Design ©2023 Created by Ant UED
+          </Typography.Title>
+          <Space>
+            <Link style={{ color: "white" }} to="/">
+              Home
+            </Link>
+            <Link style={{ color: "white" }} to="/exchanges">
+              Exchanges
+            </Link>
+            <Link style={{ color: "white" }} to="/news">
+              News
+            </Link>
+          </Space>
+          
+        </div> */}
+      
+        <Footer
+          style={{
+            textAlign: 'center',
+            
+          }}
+        >
+          <br />
+        <br />
+          Coin Track ©2023 Created by <a href="https://github.com/heyhimansh" target="_blank">Himanshu 🧊 </a>
+          <br />
+          <br />
+          <div  >
+            <Link style={{ color: "black" , margin:'10px',fontWeight:'600'}}  to="/home">
+              Home
+            </Link>
+            
+            <Link style={{ color: "black" ,margin:'10px',fontWeight:'600'}} to="/exchanges">
+              Exchanges
+            </Link>
+            <Link style={{ color: "black",margin:'10px',fontWeight:'600' }} to="/news">
+              News
+            </Link>
+          </div>
+        </Footer>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;
