@@ -13,7 +13,7 @@ const baseUrl = "https://api.coinranking.com/v2";
 const createRequest = (url) => ({ url, headers: cryptoApiHeaders });
 
 // Crypto API Redux Logic
-export const cryptoApi = createApi({
+export const cryptoApis = createApi({
 
   reducerPath: "cryptoApi",
 
@@ -44,4 +44,4 @@ export const {
   useGetCryptoDetailsQuery,
   useGetCryptoHistoryQuery,
   useGetCryptoSearchQuery,
-} = cryptoApi;
+} = cryptoApis;
