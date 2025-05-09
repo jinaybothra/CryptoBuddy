@@ -8,8 +8,8 @@ const cryptoNewsHeaders = {
 const baseUrl = "https://duckduckgo8.p.rapidapi.com";
 const createRequest = (url) => ({ url, headers: cryptoNewsHeaders });
 
-export const cryptoNewsApi = createApi({
-  reducerPath: "cryptoNewsApi",
+export const cryptoNews = createApi({
+  reducerPath: "cryptoNews",
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     // get cryptocurrencies
@@ -21,4 +21,4 @@ export const cryptoNewsApi = createApi({
     }),
   }),
 });
-export const { useGetCryptoNewsQuery } = cryptoNewsApi;
+export const { useGetCryptoNewsQuery } = cryptoNews;

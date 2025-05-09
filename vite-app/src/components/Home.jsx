@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useGetCryptosQuery } from "../servicesapis/cryptoApis";
 import Currency from "./Currency";
 import News from "./News";
+import Loading from "./Loading";
 const { Title } = Typography;
 
 const Home = () => {
@@ -12,7 +13,7 @@ const Home = () => {
   const globalStats = data?.data?.stats;
 
   console.log(globalStats);
-
+  if(isFetching) return <Loading />;
   return (
     <>
       <Title level={2} className="heading">

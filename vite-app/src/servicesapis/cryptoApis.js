@@ -15,7 +15,7 @@ const createRequest = (url) => ({ url, headers: cryptoApiHeaders });
 // Crypto API Redux Logic
 export const cryptoApis = createApi({
 
-  reducerPath: "cryptoApi",
+  reducerPath: "cryptoApis",
 
   // function that except a object base url
   baseQuery: fetchBaseQuery({ baseUrl }),

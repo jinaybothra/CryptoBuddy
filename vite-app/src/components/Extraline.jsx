@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useGetCryptosQuery } from "../servicesapis/cryptoApis";
 import News from "./News";
 import Feature from "./Feature";
+import Loading from "./Loading";
 
 const { Title } = Typography;
 
@@ -13,7 +14,7 @@ const Extraline = () => {
   const globalStats = data?.data?.stats;
 
   console.log(globalStats);
-
+  if(isFetching) return <Loading />;
   return (
     <div className="extraline">
       <Title level={2} className="extraline-header">

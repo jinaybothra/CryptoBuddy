@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import millify from 'millify'
 import { Col, Row, Typography, Select } from 'antd'
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined } from '@ant-design/icons';
-
+import Loading from './Loading';
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../servicesapis/cryptoApis';
 import Design from './Design';
 
@@ -22,6 +22,8 @@ const CryptoDetails = () => {
   
   const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 
+
+  if(isFetching) return <Loading />;
   const stats = [
     { title: 'Price to USD', value: `$ ${cryptoDetails.price && millify(cryptoDetails.price)}`, icon: <DollarCircleOutlined /> },
     { title: 'Rank', value: cryptoDetails.rank, icon: <NumberOutlined /> },

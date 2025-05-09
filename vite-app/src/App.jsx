@@ -11,6 +11,7 @@ import CryptoDetails from "./components/Cryptodetail";
 import "./App.css";
 import Currency from "./components/Currency";
 import Extraline from "./components/Extraline";
+import News from "./components/News";
 
 const App = () => {
   return (
@@ -25,8 +26,9 @@ const App = () => {
             <Route path="/" element={<Extraline />} />
               <Route path="/home" element={<Home />} />
               <Route path="/exchanges" element={<Exchange />} />
-              <Route path="/cryptocurrencies" element={<Currency />} />
+              <Route path="/currency" element={<Currency />} />
               <Route path="/crypto/:coinId" element={<CryptoDetails />} />
+              <Route path="/news" element={<News />} />
               
             </Routes>
           </div>

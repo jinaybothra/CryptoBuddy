@@ -2,21 +2,19 @@ import React, { useState } from "react";
 import { Select, Typography, Row, Col, Avatar, Card } from "antd";
 import moment from "moment";
 import DOMPurify from 'dompurify';
-
+import Loading from "./Loading";
 
 import { useGetCryptosQuery } from "../servicesapis/cryptoApis";
 import { useGetCryptoNewsQuery } from "../servicesapis/cryptoNews";
-// import { useGetCryptoImgQuery } from "../services/cryptoImg";
 
 const demoImage = "https://cdn-icons-png.flaticon.com/512/2965/2965879.png";
-
 const demoOrg = "https://cdn-icons-png.flaticon.com/512/1323/1323734.png";
 
 const { Text, Title } = Typography;
 const { Option } = Select;
 
 const News = ({ simplified }) => {
-  const [newsCategory, setNewsCategory] = useState("Cryptocurrency");
+  const [newsCategory, setNewsCategory] = useState("Currency");
   const { data } = useGetCryptosQuery(100);
   const { data: cryptoNews } = useGetCryptoNewsQuery({
     newsCategory,
@@ -25,7 +23,7 @@ const News = ({ simplified }) => {
 
   console.log(cryptoNews);
 
-  if (!cryptoNews) return <Loader />;
+  if (!cryptoNews || !cryptoNews.results) return <Loading />;
 
   return (
     <Row gutter={[24, 24]}>
@@ -41,48 +39,48 @@ const News = ({ simplified }) => {
               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
           >
-            <Option value="Cryptocurency">Cryptocurrency</Option>
+            <Option value="Currency">Cryptocurrency</Option>
             {data?.data?.coins?.map((currency) => (
-              <Option value={currency.name}>{currency.name}</Option>
+              <Option key={currency.name} value={currency.name}>
+                {currency.name}
+              </Option>
             ))}
           </Select>
         </Col>
       )}
 
-      {cryptoNews.data.map((news) => (
-        <Col xs={24} sm={12} lg={8}>
+      {cryptoNews.results.map((news, index) => (
+        <Col key={index} xs={24} sm={12} lg={8}>
           <Card hoverable className="news-card">
             <a href={news.url} target="_blank" rel="noreferrer">
               <div className="news-image-container">
                 <Title className="news-title" level={4}>
                   {news.title}
                 </Title>
-                <Avatar shape="square" size={64} src={news.icon} alt="" />
-                {/* <img style={{ maxWidth: "105%", maxHeight: "10%" }} src={news.icon} alt="" /> */}
-                {/* <img             
-                  src={}
+                <Avatar
+                  shape="square"
+                  size={64}
+                  src={news.favicon || demoOrg}
                   alt=""
-                /> */}
+                />
               </div>
-              <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(news.rawDescription) }} />
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(news.description_html || news.description),
+                }}
+              />
               <div className="provider-container">
                 <div>
-                  <Avatar src={news.icon} alt="" />
-                  {/* <Avatar src={news.provider[0]?.image?.thumbnail?.contentUrl || demoImage} alt="" /> */}
+                  <Avatar src={news.favicon || demoImage} alt="" />
                   <Text className="provider-name">
-                    {news.hostname}
+                    {new URL(news.url).hostname}
                   </Text>
                 </div>
-                {/* <Text>
-                  {moment(news.published_date).startOf("ss").fromNow()}
-                </Text> */}
               </div>
             </a>
           </Card>
         </Col>
       ))}
-
-    
     </Row>
   );
 };

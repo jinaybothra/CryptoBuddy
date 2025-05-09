@@ -9,7 +9,7 @@ const baseUrl =  'https://real-time-image-search.p.rapidapi.com';
 const createRequest = (url) => ({ url, headers: cryptoNewsHeaders });
 
 export const cryptoNewsApi = createApi({
-  reducerPath: "cryptoNewsApi",
+  reducerPath: "cryptoNews",
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     // get cryptocurrencies

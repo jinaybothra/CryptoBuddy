@@ -3,7 +3,7 @@ import { useGetCryptoSearchQuery } from '../servicesapis/cryptoApis'
 import millify from 'millify'
 import {Row, Col, Input, Collapse, Typography, Avatar } from 'antd'
 import { StopOutlined,CheckOutlined } from '@ant-design/icons';
-
+import Loading from './Loading';
 const { Text, Title } = Typography;
 const { Panel } = Collapse;
 
@@ -13,6 +13,7 @@ const Exchange = () => {
   const { data, isFetching } = useGetCryptoSearchQuery(searchedTerm)
   const searchedData = data?.data
 
+  if(isFetching) return <Loading />;
   return (
     <>
       <Title level={2} className='heading'>Search Markets for specific Crypto</Title>
